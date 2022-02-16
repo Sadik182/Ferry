@@ -24,7 +24,7 @@
 
 
 
-form{
+.form{
     background-color: rgb(103, 179, 143);
     margin-left: 60px;
     margin-top: 30px; 
@@ -186,3 +186,33 @@ select{
      background-color: white;
      text-align: center;
  }
+
+
+
+ /* Modal Content */
+ .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    min-height: 70vh;
+    }
+
+    /* The Close Button */
+    .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+
+/* modal end */
