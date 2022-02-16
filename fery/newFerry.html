@@ -6,154 +6,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket Booking Syatem</title>
     <link rel="stylesheet" href="newFerry.css">
-
-
-    <script>
-        function show(){
-            var option = document.getElementById('option').value;
-            if(option == 'Bus' || option == "Truck" || option == 'Microbus' || option == 'Motorbus')
-            {
-                document.getElementById('vInfo').style.display="block";
-                document.getElementById('passInfo').style.display="none";
-                document.getElementById('error').style.display= "none";
-            }
-            else if (option=='Passenger'){
-                document.getElementById('vInfo').style.display="none";
-                document.getElementById('passInfo').style.display="block";
-                document.getElementById('error').style.display= "none";
-            }
-            else
-            {
-                document.getElementById('vInfo').style.display="none";
-                document.getElementById('passInfo').style.display="none";
-                document.getElementById('error').style.display= "inline";
-            }
-        }
-        function store(){
-            var option = document.getElementById('option').value;
-            var name = document.getElementById('name').value;
-            var phone = document.getElementById('phone').value;
-            var seat = document.getElementById('seat').value;
-            var vName = document.getElementById('vName').value;
-            var vNumber = document.getElementById('vNumber').value;
-            var qnt = document.getElementById('qnt').value;
-            var date = document.getElementById('date').value;
-
-            var weight = 1000000;
-            if(option=='Bus' || option=='Truck'){
-                weight -= (qnt*1000);
-            }
-            else if(option=='Microbus'){
-                weight -= (qnt*5000);
-            }
-            else if(option=='Motorbus'){
-                weight -= (qnt*100);
-            }
-            else if(option=='Passenger'){
-                weight -= (qnt*65);
-            }
-            document.getElementById('nBusNo').innerHTML = Math.floor(weight/10000);
-            document.getElementById('nTruckNo').innerHTML =Math.floor(weight/10000);
-            document.getElementById('nMicroNo').innerHTML = Math.floor(weight/5000);
-            document.getElementById('nMotor').innerHTML =Math.floor(weight/100);
-            document.getElementById('nPass').innerHTML =Math.floor(weight/65);
-
-        }
-        
-    </script>
 </head>
 <body>
+
+<!-- javascript code starts -->
+
+<script>
+
+function show(){
+    var option = document.getElementById("option").value;
+
+    if(option=="Bus" || option=="Truck" || option=="Microbus" || option=="Motorcycle")
+    {
+        document.getElementById("vInfo").style.display="block";
+        document.getElementById("passInfo").style.display="none";
+        document.getElementById("error").style.display="none";
+
+     
+    }
+    else if( option=="Passenger")
+    {
+
+        document.getElementById("vInfo").style.display="none";
+        document.getElementById("passInfo").style.display="block";
+        document.getElementById("error").style.display="none";
+    }
+
+    else{
+        document.getElementById("vInfo").style.display="none";
+        document.getElementById("passInfo").style.display="none";
+        document.getElementById("error").style.display="inline";
+    }
+
+    }
+
+
+</script>
+<!-- javascript code ends --> 
+
+
    
 
     <div class="container">
         <h2 id="header">Ticket Booking</h2>
         <form action="#">
-            <label id="ticket" for="types">Ticket For </label>
-            <select id="option" required onchange="show()">
+            <div class="rickrt-left">
+                <label id="ticket" for="types">Ticket For </label>
+            <select onchange="show()" id="option">
               <option value="null"> --Chose Option-- </option>
               <option value="Bus">Bus</option>
               <option value="Truck">Truck</option>
               <option value="Microbus">Microbus</option>
-              <option value="Motorbus">Motorcycle</option>
+              <option value="Motorcycle">Motorcycle</option>
               <option value="Passenger">Passenger</option>
-            </select><span id="error" style="color:red; display: none;" >Field Must Filed Up</span>
+            </select>
+            <span id="error" style="color: red; display: none;">Field must fill up</span>
             <br><br>
 
-            <div class="pass-info" id="passInfo" style="display: none;">
+            </div>
+
+
+            <div class="ticket-right">
+                <label id="ticket" for="types">Ferry Name</label>
+            <select onchange="show()" id="option">
+              <option value="null"> --Chose Option-- </option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+            </select>
+            </div>
+
+            <div class="ticket-last">
+                <label id="ticket" for="types">Route Name</label>
+            <select onchange="show()" id="option">
+              <option value="null"> --Chose Option-- </option>
+              <option value="shahalam">shahalam</option>
+              <option value="sajib">sajib</option>
+              <option value="sadik">sadik</option>
+              <option value="papri">papri</option>
+              <option value="jaya">jaya</option>
+            </select>
+            </div>
+
+            <div class="pass-info" id="passInfo">
                 <h3>Passenger-Info</h3>
 
                 <table>
                     <tr>
                         <td><lebel for="name:">Name:</td>
-                        <td><input type="text" id="name"></td>
+                        <td><input type="text"></td>
                     </tr>
 
                     <tr>
                         <td><lebel for="name:">Phone No:</td>
-                        <td><input type="text" id="phone"></td>
+                        <td><input type="text"></td>
                     </tr>
 
                     <tr>
                         <td><lebel for="name:">Seat-No:</td>
-                        <td><input type="text" id="seat"></td>
+                        <td><input type="text"></td>
                     </tr>
                 </table>
 
             </div>
 
-            <div style="display: none;" class="vehicle-info" id="vInfo"> 
+            <div style="display: none;" class="vehicle-info" id="vInfo">
                 <h3>Vehicle-Info</h3>
                 
                 <table>
                     <tr>
-                        <td><lebel for="name:">Vehicle-Name:</td>
-                            <td><input type="text" id="vName"></td>
+                        <td><lebel for="name:">Car-Name:</td>
+                            <td><input type="text"></td>
                     </tr>
 
                     <tr>
-                        <td><lebel for="name:">Vehicle-Number:</td>
-                        <td><input type="text" id="vNumber"></td>
+                        <td><lebel for="name:">Car-Number:</td>
+                        <td><input type="phone"></td>
                     </tr>
                 </table>
 
             </div>
 
             <div class="footer">
-                <h3>Quantity</h3>
-                    <input type="text" id="qnt">
+                <h3>Quantity of Ticket</h3>
+                    <input type="text">
 
                 <h3>Date</h3>
-                <input type="date" id="date">
+                <input type="date">
             </div>
 
             
             <table>
             <tr>
                 <td>
-                    <button class="print-btn">Print</button>
+                    <button class="print-btn" onclick="myBtn()">Print</button>
                 </td>
                 <td>
-                    <button class="btn" onclick="store()">Submit</button>
+                    <button class="btn">Submit</button>
                 </td>
             </tr>
             </table>
           </form>
 
           <div class="left-weight">
-              <h3>No.of Bus</h3>
-              <p id="nBusNo"></p>
+              <h3>Available Space For Bus</h3>
+              <p></p>
 
-              <h3>No.of Truck</h3>
-              <p id="nTruckNo"></p>
+              <h3>Available Space For Truck</h3>
+              <p></p>
 
-              <h3>No.of Microbus</h3>
-              <p id="nMicroNo"></p>
+              <h3>Available Space For Microbus</h3>
+              <p></p>
 
-              <h3>No.of Mototrcycle</h3>
-              <p id="nMotor"></p>
+              <h3>Available Space For Mototrcycle</h3>
+              <p></p>
 
-              <h3>No.of Passenger</h3>
-              <p id="nPass"></p>
+              <h3>Available Space For Passenger</h3>
+              <p></p>
           </div>
     </div>
 
