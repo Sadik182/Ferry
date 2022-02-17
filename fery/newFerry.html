@@ -43,29 +43,30 @@
 
         // Onchange vehicle Option Part Start
 
-        function show() {
-            var option = document.getElementById("vOption").value;
+        function show(){
+            var option = document.getElementById('vOption').value;
 
-            if (option == "Bus" || option == "Truck" || option == "Microbus" || option == "Motorcycle") {
-                document.getElementById("vInfo").style.display = "block";
-                document.getElementById("passInfo").style.display = "none";
-                document.getElementById("error").style.display = "none";
-
-
+            if(option == 'Bus' || option == "Truck" || option == 'Microbus' || option == 'Motorcycle')
+            {
+                document.getElementById('vInfo').style.display="block";
+                document.getElementById('passInfo').style.display="none";
+                document.getElementById('error').style.display= "none";
+                document.getElementById('pTicket').style.display= "none";
+                document.getElementById('vTicket').style.display= "block";
             }
-            else if (option == "Passenger") {
-
-                document.getElementById("vInfo").style.display = "none";
-                document.getElementById("passInfo").style.display = "block";
-                document.getElementById("error").style.display = "none";
+            else if (option=='Passenger'){
+                document.getElementById('vInfo').style.display="none";
+                document.getElementById('passInfo').style.display="block";
+                document.getElementById('error').style.display= "none";
+                document.getElementById('pTicket').style.display= "block";
+                document.getElementById('vTicket').style.display= "none";
             }
-
-            else {
-                document.getElementById("vInfo").style.display = "none";
-                document.getElementById("passInfo").style.display = "none";
-                document.getElementById("error").style.display = "inline";
+            else
+            {
+                document.getElementById('vInfo').style.display="none";
+                document.getElementById('passInfo').style.display="none";
+                document.getElementById('error').style.display= "inline";
             }
-
         }
 
         // Onchange Option Part End
@@ -223,7 +224,7 @@
 
 </head>
 
-<body>
+<body id="body">
 
 
 
@@ -291,7 +292,7 @@
                         <td>
                             <lebel for="name:">Phone No:
                         </td>
-                        <td><input type="number" id="pPhone" required></td>
+                        <td><input type="tel" id="pPhone" required></td>
                     </tr>
 
                     <tr>
@@ -300,6 +301,14 @@
                         </td>
                         <td><input type="text" id="pSeatName" required></td>
                     </tr>
+                    <tr>
+                        <td>
+                            <lebel for="name:">Quantity
+                        </td>
+                        <td><input type="number" id="qnt"><span id="qerror" style="display: none;color: red;">Quantity Must be
+                            grater than 0</span></td>
+                    </tr>
+                
                 </table>
 
             </div>
@@ -326,9 +335,7 @@
             </div>
 
             <div class="footer">
-                <h3>Quantity of Ticket</h3>
-                <input type="number" id="qnt"><span id="qerror" style="display: none;color: red;">Quantity Must be
-                    grater than 0</span>
+                
 
                 <h3>Date</h3>
                 <input type="date" id="date">
@@ -372,8 +379,11 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <div style="width: 90%;min-height: 80%;margin:0 auto;">
-                <h1 style="text-align: center;">Bangladesh Ferry Corporation</h1>
+            <div style="width: 90%;min-height: 80%;margin:0 auto;" id="sTicket">
+                
+
+                <div id="pTicket" style="width: 40%;margin: 0 auto; margin-top: 40px; display:none;">
+                    <h1 style="text-align: center;">Bangladesh Ferry Corporation</h1>
                 <div class="row" style="width: 100%;display: flex;margin-top: 20px;">
                     <div class="col" style="width: 48%;">
                         <h3>Ferry Name: </h3>
@@ -382,8 +392,6 @@
                         <h3>Ticket No: <span id="tNo"></span> </h3>
                     </div>
                 </div>
-
-                <div id="pTicket" style="width: 40%;margin: 0 auto; margin-top: 40px; display:none;">
                     <table class="table">
                         <tr>
                             <td>Name: </td>
@@ -434,19 +442,19 @@
                         <tr>
                             <td>Vehicle Quantity: </td>
                             <td>
-                                <p id="tVqunt"></p>
+                                <p id="sVqunt"></p>
                             </td>
                         </tr>
                         <tr>
                             <td>Date: </td>
                             <td>
-                                <p id="sDate"></p>
+                                <p id="sdDate"></p>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <button id="print" style="padding: 10px 25px; border-radius: 15px;border: none;cursor: pointer;"
-                    onclick="printPage()">Print</button>
+                onclick="printPage()">Print</button>
             </div>
         </div>
 
@@ -478,46 +486,41 @@
             document.getElementById('tVname').innerHTML = document.getElementById('vName').value;
             document.getElementById('tVnumber').innerHTML = document.getElementById('vNumber').value;
             document.getElementById('tVqunt').innerHTML = document.getElementById('qnt').value;
+            document.getElementById('sVqunt').innerHTML = document.getElementById('qnt').value;
             document.getElementById('sDate').innerHTML = document.getElementById('date').value;
-
+            document.getElementById('sdDate').innerHTML = document.getElementById('date').value;
             
+
         }
 
         function printPage(){
 
+            var vOption = document.getElementById('vOption').value;
 
-            if(vOption=="Passenger")
-            {
+            console.log(vOption);
 
-                document.getElementById('pTicket').style.display = "block";
-                document.getElementById('vTicket').style.display = "none";
-
-                var body = document.getElementById('body').innerHTML;
-                var printPage = document.getElementById('pTicket').innerHTML;
+            if(vOption=="Passenger"){
+                let body,printPage;
+                body = document.getElementById('body').innerHTML;
+                printPage = document.getElementById('pTicket').innerHTML;
 
                 document.getElementById('body').innerHTML = printPage;
 
                 window.print();
                 location.replace("newFerry.html");
-                }
-            else if(vOption == "vnull")
-            {
-                console.log("field Must fill Up");
             }
             else
             {
-                document.getElementById('vTicket').style.display = "block";
-                document.getElementById('pTicket').style.display = "none";
-
-                var body = document.getElementById('body').innerHTML;
-                var printPage = document.getElementById('pTicket').innerHTML;
+                let body,printPage;
+                body = document.getElementById('body').innerHTML;
+                printPage = document.getElementById('vTicket').innerHTML;
 
                 document.getElementById('body').innerHTML = printPage;
 
                 window.print();
                 location.replace("newFerry.html");
             }
-
+            
             
         }
 
